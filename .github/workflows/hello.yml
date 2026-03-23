@@ -1,21 +1,22 @@
 name: Pipeline Dau Tien Cua Toi
 
-# 1. Triggers: Khi nào thì chạy?
 on:
   push:
     branches:
       - main
 
-# 2. Jobs: Cần làm công việc gì?
 jobs:
   say-hello-job:
-    # Máy chủ ảo nào sẽ chạy công việc này? (GitHub cấp miễn phí)
     runs-on: ubuntu-latest
     
-    # 3. Steps: Các bước thực hiện cụ thể
     steps:
-      - name: Buoc 1 - Gui loi chao
-        run: echo "Chao mung ban den voi the gioi CI/CD! Day la may chu tu dong."
+      # Bước 1: Gọi công cụ đóng gói sẵn của GitHub để tải code về
+      - name: Buoc 1 - Tai code ve may chu (Checkout)
+        uses: actions/checkout@v4
       
-      - name: Buoc 2 - Kiem tra he dieu hanh
-        run: cat /etc/os-release
+      # Bước 2: Dùng lệnh Linux quen thuộc để kiểm tra xem code đã về chưa
+      - name: Buoc 2 - Liet ke cac file dang co trong may chu
+        run: ls -la
+      
+      - name: Buoc 3 - Gui loi chao
+        run: echo "Code da duoc tai ve thanh cong!"
