@@ -1,0 +1,21 @@
+name: Pipeline Dau Tien Cua Toi
+
+# 1. Triggers: Khi nào thì chạy?
+on:
+  push:
+    branches:
+      - main
+
+# 2. Jobs: Cần làm công việc gì?
+jobs:
+  say-hello-job:
+    # Máy chủ ảo nào sẽ chạy công việc này? (GitHub cấp miễn phí)
+    runs-on: ubuntu-latest
+    
+    # 3. Steps: Các bước thực hiện cụ thể
+    steps:
+      - name: Buoc 1 - Gui loi chao
+        run: echo "Chao mung ban den voi the gioi CI/CD! Day la may chu tu dong."
+      
+      - name: Buoc 2 - Kiem tra he dieu hanh
+        run: cat /etc/os-release
