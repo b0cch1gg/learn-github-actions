@@ -1,4 +1,4 @@
-name: Pipeline Dau Tien Cua Toi
+name: Luong Kiem Thu Tu Dong (CI)
 
 on:
   push:
@@ -6,17 +6,19 @@ on:
       - main
 
 jobs:
-  say-hello-job:
+  kiem-thu-he-thong:
     runs-on: ubuntu-latest
     
     steps:
-      # Bước 1: Gọi công cụ đóng gói sẵn của GitHub để tải code về
-      - name: Buoc 1 - Tai code ve may chu (Checkout)
+      - name: Buoc 1 - Tai code ve may chu
         uses: actions/checkout@v4
       
-      # Bước 2: Dùng lệnh Linux quen thuộc để kiểm tra xem code đã về chưa
-      - name: Buoc 2 - Liet ke cac file dang co trong may chu
-        run: ls -la
+      # Bước mới: Cài đặt Python tự động
+      - name: Buoc 2 - Cai dat moi truong Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Chỉ định rõ phiên bản Python muốn dùng
       
-      - name: Buoc 3 - Gui loi chao
-        run: echo "Code da duoc tai ve thanh cong!"
+      # Bước mới: Chạy file script
+      - name: Buoc 3 - Chay kich ban kiem thu (Test)
+        run: python check_system.py
