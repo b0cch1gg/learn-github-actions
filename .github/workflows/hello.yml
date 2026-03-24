@@ -1,4 +1,4 @@
-name: Luong Kiem Thu Tu Dong (CI)
+name: Luong Kiem Thu Va Dong Goi (CI/CD)
 
 on:
   push:
@@ -6,19 +6,21 @@ on:
       - main
 
 jobs:
-  kiem-thu-he-thong:
+  kiem-thu-va-dong-goi:
     runs-on: ubuntu-latest
     
     steps:
       - name: Buoc 1 - Tai code ve may chu
         uses: actions/checkout@v4
       
-      # Bước mới: Cài đặt Python tự động
       - name: Buoc 2 - Cai dat moi truong Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # Chỉ định rõ phiên bản Python muốn dùng
+          python-version: '3.10'
       
-      # Bước mới: Chạy file script
-      - name: Buoc 3 - Chay kich ban kiem thu (Test)
+      - name: Buoc 3 - Chay kich ban kiem thu (Test - CI)
         run: python check_system.py
+        
+      # BƯỚC MỚI: Tự động đóng gói ứng dụng (Delivery - CD)
+      - name: Buoc 4 - Build Docker Image
+        run: docker build -t he-thong-kiem-tra:v1 .
