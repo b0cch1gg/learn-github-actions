@@ -36,3 +36,12 @@ jobs:
           push: true
           # Đổi tên image theo đúng chuẩn của Docker Hub: <username>/<tên-image>:<tag>
           tags: b0cch1/he-thong-kiem-tra:latest
+      # MỚI: Giả lập quá trình server tải và chạy ứng dụng
+      - name: Buoc 6 - Gia lap Trien khai (Deployment)
+        run: |
+          echo "1. Dang ket noi vao Server..."
+          echo "2. Keo Image moi nhat tu kho luu tru..."
+          docker pull TEN_DANG_NHAP_CUA_BAN/he-thong-kiem-tra:latest
+          
+          echo "3. Khoi chay ung dung tren Server..."
+          docker run TEN_DANG_NHAP_CUA_BAN/he-thong-kiem-tra:latest
